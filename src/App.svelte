@@ -42,12 +42,13 @@
   
   .container-1 {
     margin: auto;
-    width: 90vw;
+    max-width: 100vw;
     height: 45vw;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
   }
   .gradient {
     mask: radial-gradient(circle at 50% 50%, black 0%, transparent 50%);
@@ -71,10 +72,10 @@
     border-radius: 50%;
   }
   .text-container{
+    width: 35em;
     display: flex;
     flex-direction: column;
     text-align: left;
-    padding-right: 15vw;
   }
   p{
     line-height: 0;
