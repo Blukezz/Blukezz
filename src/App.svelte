@@ -39,6 +39,18 @@
 
     to { opacity: 1; }
   }
+
+  @keyframes sizein {
+    from { 
+      scale: 0.75;
+      opacity: 0;
+     }
+
+    to {
+      scale: 1;
+      opacity: 1;
+    }
+  }
   
   .container-1 {
     margin: auto;
@@ -62,7 +74,7 @@
     align-items: center;
     justify-content: center;
 
-    animation-name: fadein;
+    animation-name: sizein;
     animation-duration: 2s;
     animation-timing-function: cubic-bezier(.5,1,.89,1);
   }
@@ -70,6 +82,13 @@
     height: 12em;
     width: 12em;
     border-radius: 50%;
+
+    opacity: 0;
+    animation-name: fadein;
+    animation-duration: 2s;
+    animation-timing-function: cubic-bezier(.5,1,.89,1);
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
   }
   .text-container{
     width: 35em;
