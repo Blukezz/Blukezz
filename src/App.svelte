@@ -13,7 +13,7 @@
 
     <div class="text-container">
       <h1 class="pfp-title">Blukez</h1>
-      <p class="pfp-description">A very pro UI desginer and developer</p>
+      <p class="pfp-description">A very pro</p>
       <div class="media-container">
 
         <a href="https://github.com" target="_blank" rel="noreferrer">
