@@ -79,8 +79,8 @@
     animation-timing-function: cubic-bezier(.5,1,.89,1);
   }
   .pfp {
-    height: 12em;
-    width: 12em;
+    height: 10em;
+    width: 10em;
     border-radius: 50%;
 
     opacity: 0;
@@ -123,6 +123,13 @@
     display: flex;
     flex-direction: row;
     gap: 0.5vw;
+
+    opacity: 0;
+    animation-name: fadein;
+    animation-duration: 2s;
+    animation-timing-function: cubic-bezier(.5,1,.89,1);
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
   }
   .media-button{
     display: flex;
@@ -131,16 +138,17 @@
     height: 3em;
     width: 3em;
 
-    background: rgba(255, 255, 255, 0.01);
+    background: #151515;
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1.5px solid #1e1e1e;
 
-    opacity: 0;
-    animation-name: fadein;
-    animation-duration: 2s;
-    animation-timing-function: cubic-bezier(.5,1,.89,1);
-    animation-delay: 1s;
-    animation-fill-mode: forwards;
+    transition: all 0.25s cubic-bezier(.5,1,.89,1);
+  }
+
+  .media-button:hover {
+    background: #1e1e1e;
+    filter: drop-shadow(#FFF);
+    border-color: #2d2d2d;
   }
 </style>
