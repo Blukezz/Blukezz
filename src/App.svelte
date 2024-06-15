@@ -1,8 +1,4 @@
-<script>
-  import profilepic from './assets/blukez.jpg';
-  import githubicon from './assets/githubicon.png';
-  import discordicon from './assets/discordicon.png';
-</script>
+
 
 <main>
   <div class="container-1">
@@ -12,8 +8,8 @@
     </div>
 
     <div class="text-container">
-      <h1 class="pfp-title">Blukez.</h1>
-      <p class="pfp-description">dev & ui desginer ig</p>
+      <h1>Blukez.</h1>
+      <p>dev & ui desginer ig</p>
       <div class="media-container">
 
         <a href="https://github.com" target="_blank" rel="noreferrer">
@@ -22,14 +18,13 @@
           </div>
         </a>
 
-        <a href="https://discord.com" target="_blank" rel="noreferrer">
-          <div class="discord media-button">
-            <img src={discordicon} alt="discord icon" style="width:1.5em; height:1.25em; opacity:0.25"/>
-          </div>
-        </a>
+        <div class="discord media-button">
+          <img class="discord-icon" src={changingcopyicon} alt="discord icon" style="width:1.5em; height:1.25em; opacity:0.25"/>
+        </div>
       </div>
     </div>
 
+  
   <div class="scroll-indicator">
     <p style="font-size: 16px; font-weight: 600; color:rgba(255,255,255, 0.35);">Scroll Down</p>
     <svg width="24" height="24" fill="none" class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.293 8.293a1 1 0 0 1 1.414 0L12 14.586l6.293-6.293a1 1 0 1 1 1.414 1.414l-7 7a1 1 0 0 1-1.414 0l-7-7a1 1 0 0 1 0-1.414Z" fill="rgba(255,255,255, 0.35)"/></svg>
@@ -148,6 +143,7 @@
     justify-content: center;
     height: 3em;
     width: 3em;
+    cursor: pointer;
 
     background: #151515;
     border-radius: 16px;
@@ -178,5 +174,53 @@
     animation-delay: 0.5s;
     animation-fill-mode: forwards;
   }
-
 </style>
+
+<script>
+  import profilepic from './assets/blukez.jpg';
+  import githubicon from './assets/githubicon.png';
+  import discordicon from './assets/discordicon.png';
+  import clipboardcheckicon from "./assets/clipboard_checkmark.png"
+
+  var changingcopyicon = discordicon
+
+  function onLoad() {
+    let discord = document.body.querySelector(".discord")
+    let discord_icon = document.body.querySelector(".discord-icon")
+
+    discord.addEventListener("mouseup", () => {
+      discord_icon.animate(
+        [{opacity: 0}],
+        {duration: 200, iterations: 1, fill: 'forwards'}
+      )
+
+      setTimeout(function(){ 
+        changingcopyicon = clipboardcheckicon
+        navigator.clipboard.writeText("blukez");
+        discord_icon.animate(
+          [{opacity: 0.25}],
+          {duration: 200, iterations: 1, fill: 'forwards'}
+        )
+      }, 200)
+
+
+      setTimeout(function(){ 
+        discord_icon.animate(
+          [{opacity: 0}],
+          {duration: 200, iterations: 1, fill: 'forwards'}
+        )
+      }, 800)
+
+      setTimeout(function(){ 
+        changingcopyicon = discordicon
+        discord_icon.animate(
+          [{opacity: 0.25}],
+          {duration: 200, iterations: 1, fill: 'forwards'}
+        )
+      }, 1000)
+    })
+    
+  }
+
+  document.addEventListener("DOMContentLoaded", onLoad);
+</script>
