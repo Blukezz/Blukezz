@@ -1,6 +1,8 @@
 
 
 <main>
+  <div class="blob gradient" id="blob"></div>
+
   <div class="container-1">
 
     <div class="gradient pfp-container">
@@ -12,15 +14,16 @@
       <p>dev & ui desginer ig</p>
       <div class="media-container">
 
-        <a href="https://github.com" target="_blank" rel="noreferrer">
-          <div class="github media-button">
-            <img src={githubicon} alt="github icon" style="width:1.5em; height:1.5em; opacity:0.25"/>
+        <a href="https://www.roblox.com/users/2774512260/profile" target="_blank" rel="noreferrer">
+          <div class="roblox media-button">
+            <img src={robloxicon} alt="roblox icon" style="width:1.5em; height:1.5em; opacity:0.25"/>
           </div>
         </a>
 
         <div class="discord media-button">
           <img class="discord-icon" src={changingcopyicon} alt="discord icon" style="width:1.5em; height:1.25em; opacity:0.25"/>
         </div>
+
       </div>
     </div>
 
@@ -53,6 +56,19 @@
       scale: 1;
       opacity: 1;
     }
+  }
+
+  .blob {
+    height: 50em;
+    width: 50em;
+    background: #FE48DD;
+    background: linear-gradient(225deg, #FE48DD, #16A167);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    transition: all 0.25s cubic-bezier(.5,1,.89,1);
+    scale: 0;
   }
   
   .container-1 {
@@ -145,17 +161,17 @@
     width: 3em;
     cursor: pointer;
 
-    background: #151515;
+    background: rgba(15, 15, 15, 0.5);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    border: 1.5px solid #1e1e1e;
+    border: 1.5px solid rgba(30, 30, 30, 0.5);
 
     transition: all 0.25s cubic-bezier(.5,1,.89,1);
   }
   .media-button:hover {
-    background: #1e1e1e;
+    background: rgba(30, 30, 30, 0.2);
     filter: drop-shadow(#FFF);
-    border-color: #2d2d2d;
+    border-color: rgba(45, 45, 45, 0.1);
   }
   .scroll-indicator {
     position: absolute;
@@ -178,7 +194,7 @@
 
 <script>
   import profilepic from './assets/blukez.jpg';
-  import githubicon from './assets/githubicon.png';
+  import robloxicon from './assets/robloxicon.png';
   import discordicon from './assets/discordicon.png';
   import clipboardcheckicon from "./assets/clipboard_checkmark.png"
 
@@ -187,6 +203,43 @@
   function onLoad() {
     let discord = document.body.querySelector(".discord")
     let discord_icon = document.body.querySelector(".discord-icon")
+
+    let blob = document.getElementById("blob")
+    let blobsize = blob.clientHeight / 2
+    var mouseleft
+
+    let profileblob = document.querySelector(".pfp-container")
+
+    document.body.addEventListener("mouseleave", () => {
+      mouseleft = true
+      blob.animate(
+        [{scale: 0, opacity: 0}],
+        {duration: 250, iterations: 1, fill: 'forwards'}
+      )
+      profileblob.animate(
+        [{opacity: 1}],
+        {duration: 250, iterations: 1, fill: 'forwards'}
+      )
+    })
+
+    document.body.addEventListener("mouseenter", () => {
+      mouseleft = false
+      blob.animate(
+        [{scale: 1, opacity: 1}],
+        {duration: 250, iterations: 1, fill: 'forwards'}
+      )
+      profileblob.animate(
+        [{opacity: 0.69}],
+        {duration: 250, iterations: 1, fill: 'forwards'}
+      )
+    })
+
+    document.addEventListener("mousemove", (thing) => {
+      if (mouseleft === false) {
+        blob.style.left = `${thing.x - blobsize}px`
+        blob.style.top = `${thing.y - blobsize}px`
+      }
+    })
 
     discord.addEventListener("mouseup", () => {
       discord_icon.animate(
@@ -219,7 +272,6 @@
         )
       }, 1000)
     })
-    
   }
 
   document.addEventListener("DOMContentLoaded", onLoad);
